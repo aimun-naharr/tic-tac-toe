@@ -1,8 +1,10 @@
 import React from "react";
 import { useState } from "react";
-
+import Cookies from "universal-cookie";
+import axios from "axios";
 const Login = () => {
 	const [user, setUser] = useState(null);
+	const cookies=new Cookies()
 	const handleLogin = () => {
 		axios.post("http://localhost:8000/login", user).then((res) => {
 			const { firstName, lastName, userName, hashPassword, userId, token } = res.data;
