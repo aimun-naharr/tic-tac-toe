@@ -1,34 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import "./App.css";
+import SignUp from "./components/SignUp";
+import {StreamChat} from 'stream-chat'
+import  Cookies  from "universal-cookie";
+import Login from "./components/Login";
+
 
 function App() {
-  const [count, setCount] = useState(0)
+	const api_key=import.meta.env.API_KEY
+	const cookies=new Cookies()
+	const token =cookies.get('token')
+	const client=StreamChat.getInstance(api_key)
 
-  return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+	if(token){
+		client.connectUser({
+			id: cookies.get('userId'),
+			name: cookies.get('userName'),
+			firstName: cookies.get('firstName'),
+			lastName: cookies.get('lastName'),
+			hashedPassword: cookies.get('hashedPassword')
+		}, token).then(user=>{
+			console.log(user)
+		})
+	}
+	return (
+		<div className="board">
+			<SignUp/>
+			<Login/>
+		</div>
+	);
 }
 
-export default App
+export default App;
