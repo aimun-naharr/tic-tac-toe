@@ -2,18 +2,23 @@ import React from "react";
 import { useState } from "react";
 import Cookies from "universal-cookie";
 import axios from "axios";
-const SignUp = () => {
+const SignUp = ({setIsAuth}) => {
 	const [user, setUser] = useState(null);
      const cookies=new Cookies()
 	const handleSignUp = () => {
 		axios.post("http://localhost:8000/signup", user).then((res) => {
-			const { firstName, lastName, userName, hashPassword, userId, token } = res.data;
+			if(res.data.token){
+				const { firstName, lastName, userName, hashPassword, userId, token } = res.data;
                cookies.set('token', token)
                cookies.set('userName', userName)
                cookies.set('firstName', firstName)
                cookies.set('lastName', lastName)
                cookies.set('hashPassword', hashPassword)
                cookies.set('userId', userId)
+			setIsAuth(true)
+			}else{
+				
+			}
 		});
 	};
 	return (
