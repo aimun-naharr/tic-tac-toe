@@ -30,7 +30,7 @@ function App() {
 		});
 	}
 	return (
-		<div className="board">
+		<div className="">
 			{isAuth ? (
 				<Chat client={client}>
 					<JoinGame/>

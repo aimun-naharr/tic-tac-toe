@@ -5,7 +5,7 @@ import axios from "axios";
 const Login = ({setIsAuth}) => {
 	const [user, setUser] = useState(null);
 	const [error, setError]=useState('')
-	console.log(user);
+	
 	const cookies=new Cookies()
 	const handleLogin = () => {
 		axios.post("http://localhost:8000/login", user).then((res) => {
@@ -25,7 +25,7 @@ setError('you are not authenticated')
 		});
 	};
 	return (
-		<div>
+		<div className="login">
 			<h1>Login</h1>
 			<input type="text" placeholder="UserName" onChange={(e) => setUser({ ...user, userName: e.target.value })} />
 			<input type="password" placeholder="Password" onChange={(e) => setUser({ ...user, password: e.target.value })} />

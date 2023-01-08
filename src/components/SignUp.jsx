@@ -22,7 +22,7 @@ const SignUp = ({setIsAuth}) => {
 		});
 	};
 	return (
-		<div>
+		<div className="w-full md:w-[40%] px-4 mx-auto flex flex-col gap-4">
 			<h1>Sign up</h1>
 			<input type="text" placeholder="First Name" onChange={(e) => setUser({ ...user, firstName: e.target.value })} />
 			<input type="text" placeholder="Last Name" onChange={(e) => setUser({ ...user, lastName: e.target.value })} />
