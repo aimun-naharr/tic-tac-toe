@@ -4,7 +4,7 @@ import { useChannelStateContext, useChatContext } from "stream-chat-react";
 import { Patterns } from "./winningPattern";
 
 const Board = ({ result, setResult }) => {
-	const rowStyles = "flex w-full h-full";
+	const rowStyles = "flex w-full h-full gap-2";
 	const { client } = useChatContext();
 	const { channel } = useChannelStateContext();
 	const [board, setBoard] = useState(["", "", "", "", "", "", "", "", ""]);
@@ -76,7 +76,7 @@ const Board = ({ result, setResult }) => {
 		checkIfTie()
 	}, [board]);
 	return (
-		<div className="bg-cyan-600 flex flex-col w-[400px] h-[400px]  mx-auto ">
+		<div className="gap-2 flex flex-col w-[400px] h-[400px]   ">
 			<div className={rowStyles}>
 				<Sqaure chooseSquare={() => chooseSquare(0)} val={board[0]} />
 				<Sqaure chooseSquare={() => chooseSquare(1)} val={board[1]} />
